@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   AI Resume &amp; Job Match Analyzer
+  </title>
+  <meta content="AI-powered resume analyzer that compares CVs with job descriptions, calculates ATS score, identifies missing skills, recommends job roles, and generates cover letters." name="description"/>
+  <meta content="AI Resume Analyzer, ATS Score, Job Match, Resume Screening, Career AI, Streamlit, Python, NLP" name="keywords"/>
+  <link href="assets/img/main.png" rel="icon"/>
+  <link href="assets/img/main.png" rel="apple-touch-icon"/>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,700&amp;family=Lato:ital,wght@0,100;0,300;0,400;0,700;1,300;1,400;1,700&amp;family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,700&amp;display=swap" rel="stylesheet"/>
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet"/>
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet"/>
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet"/>
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet"/>
+  <link href="assets/css/main.css" rel="stylesheet"/>
+  <!-- =======================================================
+  * Template Name: Orbit
+  * Template URL: https://bootstrapmade.com/orbit-bootstrap-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+  <style>
+   .hero .hero-tag .tag-text {
+      letter-spacing: .4px;
+      font-weight: 700;
+    }
+
+    .tool-card {
+      height: 100%;
+      border-radius: 22px;
+      padding: 28px;
+      background: #fff;
+      box-shadow: 0 12px 35px rgba(25, 35, 60, .08);
+      border: 1px solid rgba(25, 35, 60, .06);
+      transition: all .25s ease;
+    }
+
+    .tool-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 45px rgba(25, 35, 60, .12);
+    }
+
+    .tool-card .icon-wrapper {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, #0d6efd, #20c997);
+      color: #fff;
+      font-size: 26px;
+      margin-bottom: 20px;
+    }
+
+    .step-number {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: #0d6efd;
+      color: #fff;
+      display: inline-grid;
+      place-items: center;
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
+    .cta-panel {
+      border-radius: 28px;
+      background: linear-gradient(135deg, #0b2545, #0d6efd);
+      padding: 48px;
+      color: #fff;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .cta-panel h2,
+    .cta-panel p {
+      color: #fff;
+    }
+
+    .cta-panel .btn-light {
+      border-radius: 999px;
+      padding: 12px 24px;
+      font-weight: 700;
+    }
+
+    .tech-badge {
+      display: inline-block;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(13, 110, 253, .08);
+      color: #0d6efd;
+      margin: 5px;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .profile-note {
+      font-size: 15px;
+      color: rgba(33, 37, 41, .72);
+    }
+  
+    .team .team-member {
+      gap: 28px;
+      align-items: center !important;
+      flex-wrap: wrap;
+    }
+
+    .team .team-member .pic {
+      flex: 0 0 260px;
+      width: 260px;
+      max-width: 260px;
+      margin: 0 auto;
+    }
+
+    .team .team-member .pic img {
+      width: 260px;
+      height: 260px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 50%;
+      display: block;
+      border: 6px solid #ffffff;
+      box-shadow: 0 14px 35px rgba(25, 35, 60, .15);
+    }
+
+    .team .team-member .member-info {
+      flex: 1;
+      min-width: 280px;
+    }
+
+    .team .team-member .member-info h4 {
+      margin-bottom: 10px;
+    }
+
+    .team .team-member .social {
+      margin-top: 18px;
+    }
+
+    @media (max-width: 768px) {
+      .team .team-member {
+        text-align: center;
+        justify-content: center;
+      }
+
+      .team .team-member .member-info {
+        min-width: 100%;
+      }
+    }
+
+  </style>
+ </head>
+ <body class="index-page">
+  <header class="header d-flex align-items-center sticky-top" id="header">
+   <div class="container position-relative d-flex align-items-center justify-content-between">
+    <a class="logo d-flex align-items-center me-auto me-xl-0" href="index.html">
+     <h1 class="sitename">
+      ResumeAI
+     </h1>
+     <span>
+      .
+     </span>
+    </a>
+    <nav class="navmenu" id="navmenu">
+     <ul>
+      <li>
+       <a class="active" href="#hero">
+        Home
+       </a>
+      </li>
+      <li>
+       <a href="#about">
+        Project
+       </a>
+      </li>
+      <li>
+       <a href="#services">
+        Features
+       </a>
+      </li>
+      <li>
+       <a href="#workflow">
+        Workflow
+       </a>
+      </li>
+      <li>
+       <a href="#portfolio">
+        Screenshots
+       </a>
+      </li>
+      <li>
+       <a href="#models">
+        Logic
+       </a>
+      </li>
+      <li>
+       <a href="#team">
+        Developer
+       </a>
+      </li>
+      <li>
+       <a href="#contact">
+        Contact
+       </a>
+      </li>
+     </ul>
+     <i class="mobile-nav-toggle d-xl-none bi bi-list">
+     </i>
+    </nav>
+    <a class="btn-getstarted" href="http://localhost:8501" target="_blank">
+     Launch Analyzer
+    </a>
+   </div>
+  </header>
+  <main class="main">
+   <section class="hero section" id="hero">
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+     <div class="row align-items-center gy-5">
+      <div class="col-lg-6" data-aos="fade-right" data-aos-delay="200">
+       <div class="hero-content">
+        <div class="hero-tag" data-aos="fade-up" data-aos-delay="250">
+         <span class="tag-dot">
+         </span>
+         <span class="tag-text">
+          AI Career Intelligence Tool
+         </span>
+        </div>
+        <h1 class="hero-headline" data-aos="fade-up" data-aos-delay="300">
+         AI Resume &amp; Job Match Analyzer
+        </h1>
+        <p class="hero-text" data-aos="fade-up" data-aos-delay="350">
+         Upload a resume, paste a job description, and instantly receive an explained ATS score, job match score, missing skills, missing keywords, role recommendations, improvement suggestions, and a downloadable cover letter.
+        </p>
+        <div class="hero-cta" data-aos="fade-up" data-aos-delay="400">
+         <a class="cta-button" href="http://localhost:8501" target="_blank">
+          <span>
+           Launch Analyzer
+          </span>
+          <i class="bi bi-arrow-right">
+          </i>
+         </a>
+         <a class="cta-link" href="https://github.com/Muhammad-Rafiu-Ali" target="_blank">
+          <i class="bi bi-github">
+          </i>
+          <span>
+           View GitHub
+          </span>
+         </a>
+        </div>
+       </div>
+      </div>
+      <div class="col-lg-6" data-aos="fade-left" data-aos-delay="300">
+       <div class="stats-grid">
+        <div class="stat-card stat-card-primary" data-aos="zoom-in" data-aos-delay="350">
+         <div class="stat-icon-wrap">
+          <i class="bi bi-file-earmark-person">
+          </i>
+         </div>
+         <div class="stat-info">
+          <span class="stat-value">
+           PDF/DOCX
+          </span>
+          <span class="stat-title">
+           Resume Upload
+          </span>
+         </div>
+        </div>
+        <div class="stat-card" data-aos="zoom-in" data-aos-delay="400">
+         <div class="stat-icon-wrap">
+          <i class="bi bi-percent">
+          </i>
+         </div>
+         <div class="stat-info">
+          <span class="stat-value">
+           ATS
+          </span>
+          <span class="stat-title">
+           Score Breakdown
+          </span>
+         </div>
+        </div>
+        <div class="stat-card" data-aos="zoom-in" data-aos-delay="450">
+         <div class="stat-icon-wrap">
+          <i class="bi bi-search">
+          </i>
+         </div>
+         <div class="stat-info">
+          <span class="stat-value">
+           Keywords
+          </span>
+          <span class="stat-title">
+           Matched &amp; Missing
+          </span>
+         </div>
+        </div>
+        <div class="stat-card stat-card-accent" data-aos="zoom-in" data-aos-delay="500">
+         <div class="stat-icon-wrap">
+          <i class="bi bi-envelope-paper">
+          </i>
+         </div>
+         <div class="stat-info">
+          <span class="stat-value">
+           Cover
+          </span>
+          <span class="stat-title">
+           Letter Generator
+          </span>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section>
+   <section class="about section" id="about">
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+     <div class="row gy-5 align-items-center">
+      <div class="col-xl-6" data-aos="fade-right" data-aos-delay="200">
+       <div class="about-images-wrapper">
+        <div class="image-main">
+         <img alt="Resume analytics dashboard" class="img-fluid" src="assets/img/about/about-5.webp"/>
+        </div>
+        <div class="image-offset">
+         <img alt="AI matching system" class="img-fluid" src="assets/img/about/about-square-3.webp"/>
+        </div>
+        <div class="experience-badge">
+         <span class="years">
+          AI
+         </span>
+         <span class="text">
+          Career
+          <br/>
+          Analyzer
+         </span>
+        </div>
+        <div class="shape-pattern">
+        </div>
+       </div>
+      </div>
+      <div class="col-xl-6" data-aos="fade-left" data-aos-delay="300">
+       <div class="about-content">
+        <div class="section-subtitle">
+         Project Overview
+        </div>
+        <h2>
+         Helping job seekers understand resume-job fit before applying
+        </h2>
+        <p class="lead-text">
+         Many applicants submit resumes without knowing how well their CV matches the job description. This project solves that problem by combining text similarity, keyword matching, skills detection, and ATS-style scoring in one simple web application.
+        </p>
+        <p class="mb-4 description">
+         The analyzer extracts resume text from PDF, DOCX, or TXT files, compares it with the job description, highlights missing job keywords, checks resume sections, recommends suitable job roles, and generates a downloadable report and cover letter.
+        </p>
+        <div class="features-grid">
+         <div class="feature-card">
+          <i class="bi bi-check-circle-fill">
+          </i>
+          <span>
+           Resume parsing
+          </span>
+         </div>
+         <div class="feature-card">
+          <i class="bi bi-check-circle-fill">
+          </i>
+          <span>
+           ATS explanation
+          </span>
+         </div>
+         <div class="feature-card">
+          <i class="bi bi-check-circle-fill">
+          </i>
+          <span>
+           Skill gap analysis
+          </span>
+         </div>
+         <div class="feature-card">
+          <i class="bi bi-check-circle-fill">
+          </i>
+          <span>
+           Cover letter export
+          </span>
+         </div>
+        </div>
+        <div class="action-buttons">
+         <a class="btn btn-primary-custom" href="http://localhost:8501" target="_blank">
+          Try the Analyzer
+          <i class="bi bi-arrow-right">
+          </i>
+         </a>
+         <div class="contact-info">
+          <div class="icon-box">
+           <i class="bi bi-code-slash">
+           </i>
+          </div>
+          <div class="text">
+           <span>
+            Built with
+           </span>
+           <strong>
+            Python + Streamlit + NLP
+           </strong>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section>
+   <section class="services section" id="services">
+    <div class="container section-title" data-aos="fade-up">
+     <h2>
+      Core Features
+     </h2>
+     <p>
+      A practical AI-style career tool for resume analysis, job matching, and application improvement.
+     </p>
+    </div>
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+     <div class="row g-4">
+      <div class="col-lg-4 col-md-6">
+       <div class="tool-card">
+        <div class="icon-wrapper">
+         <i class="bi bi-upload">
+         </i>
+        </div>
+        <h3>
+         Resume Upload
+        </h3>
+        <p>
+         Supports PDF, DOCX, and TXT resumes with automatic text extraction and resume content checking.
+        </p>
+       </div>
+      </div>
+      <div class="col-lg-4 col-md-6">
+       <div class="tool-card">
+        <div class="icon-wrapper">
+         <i class="bi bi-bar-chart-line">
+         </i>
+        </div>
+        <h3>
+         ATS Score Breakdown
+        </h3>
+        <p>
+         Explains scoring across contact information, skills, education, experience, keywords, formatting, resume length, and headings.
+        </p>
+       </div>
+      </div>
+      <div class="col-lg-4 col-md-6">
+       <div class="tool-card">
+        <div class="icon-wrapper">
+         <i class="bi bi-search-heart">
+         </i>
+        </div>
+        <h3>
+         Job Keyword Matching
+        </h3>
+        <p>
+         Shows matched and missing job-description keywords so applicants can improve resume alignment.
+        </p>
+       </div>
+      </div>
+      <div class="col-lg-4 col-md-6">
+       <div class="tool-card">
+        <div class="icon-wrapper">
+         <i class="bi bi-person-check">
+         </i>
+        </div>
+        <h3>
+         Role Recommendations
+        </h3>
+        <p>
+         Recommends suitable roles based on detected resume skills and matched job keywords.
+        </p>
+       </div>
+      </div>
+      <div class="col-lg-4 col-md-6">
+       <div class="tool-card">
+        <div class="icon-wrapper">
+         <i class="bi bi-lightbulb">
+         </i>
+        </div>
+        <h3>
+         Improvement Suggestions
+        </h3>
+        <p>
+         Provides practical suggestions to strengthen weak sections, missing skills, keywords, and measurable achievements.
+        </p>
+       </div>
+      </div>
+      <div class="col-lg-4 col-md-6">
+       <div class="tool-card">
+        <div class="icon-wrapper">
+         <i class="bi bi-download">
+         </i>
+        </div>
+        <h3>
+         Downloadable Outputs
+        </h3>
+        <p>
+         Generates a text-based resume analysis report and a cover letter that can be downloaded instantly.
+        </p>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section>
+   <section class="section light-background" id="workflow">
+    <div class="container section-title" data-aos="fade-up">
+     <h2>
+      How It Works
+     </h2>
+     <p>
+      A simple four-step workflow for career-focused resume analysis.
+     </p>
+    </div>
+    <div class="container">
+     <div class="row gy-4">
+      <div class="col-lg-3 col-md-6">
+       <div class="tool-card">
+        <div class="step-number">
+         1
+        </div>
+        <h4>
+         Upload Resume
+        </h4>
+        <p>
+         Upload your CV in PDF, DOCX, or TXT format.
+        </p>
+       </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+       <div class="tool-card">
+        <div class="step-number">
+         2
+        </div>
+        <h4>
+         Paste Job Description
+        </h4>
+        <p>
+         Add the target job description to compare requirements.
+        </p>
+       </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+       <div class="tool-card">
+        <div class="step-number">
+         3
+        </div>
+        <h4>
+         Analyze Match
+        </h4>
+        <p>
+         View ATS score, job match score, missing keywords, and role suggestions.
+        </p>
+       </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+       <div class="tool-card">
+        <div class="step-number">
+         4
+        </div>
+        <h4>
+         Download Report
+        </h4>
+        <p>
+         Export the analysis report and generated cover letter.
+        </p>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section>
+   <section class="portfolio section" id="portfolio">
+    <div class="container section-title" data-aos="fade-up">
+     <h2>
+      App Screenshots
+     </h2>
+    </div>
+    <div class="container">
+     <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
+      <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
+       <img alt="ATS score dashboard" class="img-fluid" src="assets/img/portfolio/portfolio-5.png"/>
+       <div class="portfolio-info">
+        <h4>
+         ATS Score Dashboard
+        </h4>
+        <p>
+         Score cards, match level, and score explanation
+        </p>
+        <a class="glightbox preview-link" data-gallery="portfolio-gallery-app" href="assets/img/portfolio/portfolio-5.png" title="ATS Score Dashboard">
+         <i class="bi bi-zoom-in">
+         </i>
+        </a>
+        <a class="details-link" href="#services" title="Feature Details">
+         <i class="bi bi-link-45deg">
+         </i>
+        </a>
+       </div>
+      </div>
+      <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
+       <img alt="Keyword matching" class="img-fluid" src="assets/img/portfolio/portfolio-7.png"/>
+       <div class="portfolio-info">
+        <h4>
+         Keyword Matching
+        </h4>
+        <p>
+         Matched and missing job keywords
+        </p>
+        <a class="glightbox preview-link" data-gallery="portfolio-gallery-app" href="assets/img/portfolio/portfolio-7.png" title="Keyword Matching">
+         <i class="bi bi-zoom-in">
+         </i>
+        </a>
+        <a class="details-link" href="#services" title="Feature Details">
+         <i class="bi bi-link-45deg">
+         </i>
+        </a>
+       </div>
+      </div>
+      <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
+       <img alt="Cover letter generator" class="img-fluid" src="assets/img/portfolio/portfolio-8.png"/>
+       <div class="portfolio-info">
+        <h4>
+         Cover Letter Generator
+        </h4>
+        <p>
+         Auto-generated cover letter with extraction note
+        </p>
+        <a class="glightbox preview-link" data-gallery="portfolio-gallery-app" href="assets/img/portfolio/portfolio-8.png" title="Cover Letter Generator">
+         <i class="bi bi-zoom-in">
+         </i>
+        </a>
+        <a class="details-link" href="#services" title="Feature Details">
+         <i class="bi bi-link-45deg">
+         </i>
+        </a>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section>
+   <section class="section light-background" id="models">
+    <div class="container section-title" data-aos="fade-up">
+     <h2>
+      Analysis Logic
+     </h2>
+     <p>
+      The project uses explainable NLP and rule-based scoring instead of a hidden black-box model.
+     </p>
+    </div>
+    <div class="container">
+     <div class="row gy-4">
+      <div class="col-lg-3 col-md-6">
+       <div class="tool-card">
+        <h4>
+         TF-IDF
+        </h4>
+        <p>
+         Converts resume and job description text into weighted keyword vectors.
+        </p>
+       </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+       <div class="tool-card">
+        <h4>
+         Cosine Similarity
+        </h4>
+        <p>
+         Calculates how closely the resume text matches the job description.
+        </p>
+       </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+       <div class="tool-card">
+        <h4>
+         Keyword Matching
+        </h4>
+        <p>
+         Extracts job keywords and identifies which ones are present or missing in the resume.
+        </p>
+       </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+       <div class="tool-card">
+        <h4>
+         ATS Rules
+        </h4>
+        <p>
+         Scores contact, skills, education, experience, formatting, length, keywords, and headings.
+        </p>
+       </div>
+      </div>
+     </div>
+     <div class="mt-5 text-center">
+      <span class="tech-badge">
+       Python
+      </span>
+      <span class="tech-badge">
+       Streamlit
+      </span>
+      <span class="tech-badge">
+       Scikit-learn
+      </span>
+      <span class="tech-badge">
+       PyPDF2
+      </span>
+      <span class="tech-badge">
+       python-docx
+      </span>
+      <span class="tech-badge">
+       Plotly
+      </span>
+      <span class="tech-badge">
+       Bootstrap
+      </span>
+     </div>
+    </div>
+   </section>
+   <section class="section">
+    <div class="container" data-aos="zoom-in">
+     <div class="cta-panel">
+      <div class="row align-items-center gy-4">
+       <div class="col-lg-8">
+        <h2>
+         Ready to test your resume against a job description?
+        </h2>
+        <p class="mb-0">
+         Launch the Streamlit analyzer, upload your CV, paste a job post, and receive a detailed match report.
+        </p>
+       </div>
+       <div class="col-lg-4 text-lg-end">
+        <a class="btn btn-light" href="http://localhost:8501" target="_blank">
+         Launch Analyzer
+        </a>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section>
+   <section class="team section" id="team">
+    <div class="container section-title" data-aos="fade-up">
+     <h2>
+      Developer
+     </h2>
+     <p>
+      Project designed and developed as a portfolio-level AI/NLP web application.
+     </p>
+    </div>
+    <div class="container">
+     <div class="row gy-4 justify-content-center">
+      <div class="col-lg-8">
+       <div class="team-member d-flex align-items-start">
+        <div class="pic">
+         <img alt="Rafiu Ali" class="img-fluid" src="assets/img/person/person-m-7.png"/>
+        </div>
+        <div class="member-info">
+         <h4>
+          Rafiu Ali
+         </h4>
+         <span>
+          Data Science, AI &amp; Business Intelligence Developer
+         </span>
+         <p class="profile-note">
+          Interested in building practical AI, analytics, and automation tools using Python, Streamlit, machine learning, and modern web technologies.
+         </p>
+         <div class="social">
+          <a href="https://github.com/Muhammad-Rafiu-Ali" target="_blank">
+           <i class="bi bi-github">
+           </i>
+          </a>
+          <a href="https://www.linkedin.com/in/rafiu-ali/" target="_blank">
+           <i class="bi bi-linkedin">
+           </i>
+          </a>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section>
+   <section class="section light-background" id="faq">
+    <div class="container section-title" data-aos="fade-up">
+     <h2>
+      Frequently Asked Questions
+     </h2>
+     <p>
+      Important notes about how the analyzer works.
+     </p>
+    </div>
+    <div class="container">
+     <div class="row gy-4">
+      <div class="col-lg-6">
+       <div class="tool-card">
+        <h4>
+         Does it work with every resume?
+        </h4>
+        <p>
+         It works best with text-based PDF, DOCX, and TXT resumes. Image-based or heavily designed PDFs may have limited text extraction quality.
+        </p>
+       </div>
+      </div>
+      <div class="col-lg-6">
+       <div class="tool-card">
+        <h4>
+         Why can candidate name extraction differ?
+        </h4>
+        <p>
+         Some PDFs store text in unusual order. The app uses strict name detection and avoids showing wrong names when the extracted text is unclear.
+        </p>
+       </div>
+      </div>
+      <div class="col-lg-6">
+       <div class="tool-card">
+        <h4>
+         Is the ATS score a real company ATS score?
+        </h4>
+        <p>
+         No. It is an explainable scoring model designed for learning and portfolio demonstration. It approximates common ATS-style checks.
+        </p>
+       </div>
+      </div>
+      <div class="col-lg-6">
+       <div class="tool-card">
+        <h4>
+         Can this be improved further?
+        </h4>
+        <p>
+         Yes. Future versions can add Gemini/OpenAI integration, PDF report export, resume rewriting, and advanced job recommendation models.
+        </p>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section>
+   <section class="contact section" id="contact">
+    <div class="container section-title" data-aos="fade-up">
+     <h2>
+      Contact &amp; Links
+     </h2>
+     <p>
+      Explore the code, connect with the developer, or launch the application.
+     </p>
+    </div>
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+     <div class="row gy-4 justify-content-center">
+      <div class="col-lg-4">
+       <div class="info-wrap">
+        <div class="info-item d-flex">
+         <i class="bi bi-github flex-shrink-0">
+         </i>
+         <div>
+          <h3>
+           GitHub
+          </h3>
+          <p>
+           <a href="https://github.com/Muhammad-Rafiu-Ali" target="_blank">
+            Muhammad-Rafiu-Ali
+           </a>
+          </p>
+         </div>
+        </div>
+        <div class="info-item d-flex">
+         <i class="bi bi-linkedin flex-shrink-0">
+         </i>
+         <div>
+          <h3>
+           LinkedIn
+          </h3>
+          <p>
+           <a href="https://www.linkedin.com/in/rafiu-ali/" target="_blank">
+            Rafiu Ali
+           </a>
+          </p>
+         </div>
+        </div>
+        <div class="info-item d-flex">
+         <i class="bi bi-box-arrow-up-right flex-shrink-0">
+         </i>
+         <div>
+          <h3>
+           Launch App
+          </h3>
+          <p>
+           <a href="http://localhost:8501" target="_blank">
+            Open Streamlit Analyzer
+           </a>
+          </p>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="col-lg-7">
+       <div class="tool-card h-100">
+        <h3>
+         Deployment Note
+        </h3>
+        <p>
+         The Launch Analyzer button currently points to
+         <strong>
+          http://localhost:8501
+         </strong>
+         for local testing. After deploying the Streamlit app, replace all localhost links with the public Streamlit Cloud URL.
+        </p>
+        <ul>
+         <li>
+          Landing Website: GitHub Pages / Netlify
+         </li>
+         <li>
+          Analyzer App: Streamlit Community Cloud
+         </li>
+         <li>
+          Source Code: GitHub repository
+         </li>
+        </ul>
+        <a class="btn btn-primary-custom mt-2" href="http://localhost:8501" target="_blank">
+         Launch Local App
+         <i class="bi bi-arrow-right">
+         </i>
+        </a>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section>
+  </main>
+  <footer class="footer light-background" id="footer">
+   <div class="container footer-top">
+    <div class="row gy-4">
+     <div class="col-lg-4 col-md-6 footer-info">
+      <a class="logo d-flex align-items-center mb-4" href="index.html">
+       <span class="sitename">
+        ResumeAI
+       </span>
+      </a>
+      <p>
+       An AI/NLP web application for resume matching, ATS-style scoring, keyword analysis, role recommendations, and cover letter generation.
+      </p>
+      <div class="social-links d-flex mt-4">
+       <a aria-label="GitHub" href="https://github.com/Muhammad-Rafiu-Ali" target="_blank">
+        <i class="bi bi-github">
+        </i>
+       </a>
+       <a aria-label="LinkedIn" href="https://www.linkedin.com/in/rafiu-ali/" target="_blank">
+        <i class="bi bi-linkedin">
+        </i>
+       </a>
+      </div>
+     </div>
+     <div class="col-lg-2 col-md-6 footer-links">
+      <h4>
+       Project
+      </h4>
+      <ul>
+       <li>
+        <a href="#about">
+         Overview
+        </a>
+       </li>
+       <li>
+        <a href="#services">
+         Features
+        </a>
+       </li>
+       <li>
+        <a href="#workflow">
+         Workflow
+        </a>
+       </li>
+       <li>
+        <a href="#models">
+         Logic
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-2 col-md-6 footer-links">
+      <h4>
+       Outputs
+      </h4>
+      <ul>
+       <li>
+        <a href="#services">
+         ATS Score
+        </a>
+       </li>
+       <li>
+        <a href="#services">
+         Missing Skills
+        </a>
+       </li>
+       <li>
+        <a href="#services">
+         Job Keywords
+        </a>
+       </li>
+       <li>
+        <a href="#services">
+         Cover Letter
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-4 col-md-12 footer-links">
+      <h4>
+       Tech Stack
+      </h4>
+      <p>
+       Python, Streamlit, Scikit-learn, TF-IDF, Cosine Similarity, PyPDF2, python-docx, Plotly, Bootstrap.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="container footer-bottom">
+    <div class="row gy-3">
+     <div class="col-md-6 order-2 order-md-1">
+      <div class="copyright">
+       <p>
+        &copy;
+        <span>
+         Copyright
+        </span>
+        <strong class="sitename">
+         ResumeAI
+        </strong>
+        . All Rights Reserved.
+       </p>
+      </div>
+      <div class="credits">
+       Designed by
+       <a href="https://bootstrapmade.com/">
+        BootstrapMade
+       </a>
+       |
+       <a href="https://bootstrapmade.com/tools/">
+        DevTools
+       </a>
+      </div>
+     </div>
+     <div class="col-md-6 order-1 order-md-2">
+      <div class="legal-links">
+       <a href="#faq">
+        FAQ
+       </a>
+       <a href="#contact">
+        Contact
+       </a>
+       <a href="http://localhost:8501" target="_blank">
+        Launch App
+       </a>
+      </div>
+     </div>
+    </div>
+   </div>
+  </footer>
+  <a class="scroll-top d-flex align-items-center justify-content-center" href="#" id="scroll-top">
+   <i class="bi bi-arrow-up-short">
+   </i>
+  </a>
+  <div id="preloader">
+  </div>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js">
+  </script>
+  <script src="assets/vendor/php-email-form/validate.js">
+  </script>
+  <script src="assets/vendor/aos/aos.js">
+  </script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js">
+  </script>
+  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js">
+  </script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js">
+  </script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js">
+  </script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js">
+  </script>
+  <script src="assets/js/main.js">
+  </script>
+ </body>
+</html>
