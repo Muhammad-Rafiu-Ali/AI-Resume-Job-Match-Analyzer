@@ -212,8 +212,8 @@ The landing page includes:
 Rafiu Ali
 Data Science, AI & Business Intelligence Developer
 
-GitHub: https://github.com/Muhammad-Rafiu-Ali
-LinkedIn: https://www.linkedin.com/in/rafiu-ali/
+- GitHub: https://github.com/Muhammad-Rafiu-Ali
+- LinkedIn: https://www.linkedin.com/in/rafiu-ali/
 
 ---
 ## Project Structure
