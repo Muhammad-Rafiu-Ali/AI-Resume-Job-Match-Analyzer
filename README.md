@@ -210,6 +210,7 @@ The landing page includes:
 ## Developer
 
 Rafiu Ali
+
 Data Science, AI & Business Intelligence Developer
 
 - GitHub: https://github.com/Muhammad-Rafiu-Ali
