@@ -6,6 +6,11 @@ This project is designed as a practical AI/NLP portfolio project for career tech
 
 ---
 
+## 🚀 Live Demo
+
+- https://www.linkedin.com/posts/rafiu-ali_artificialintelligence-machinelearning-nlp-ugcPost-7493192382679629824-Lza2/?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEO2c-wBiWextr8AEHfaKyElOfVRbj-DAVQ
+
+---
 ## Project Overview
 
 Many job applicants submit resumes without knowing whether their CV is aligned with the job description. Recruiters and Applicant Tracking Systems often look for relevant skills, experience, keywords, formatting quality, and clear resume sections.
